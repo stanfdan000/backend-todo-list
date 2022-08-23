@@ -42,7 +42,7 @@ describe('backend-express-template routes', () => {
     });
   });
 
-  it('logs in an existing user'), async () => {
+  it('logs in an existing user', async () => {
     const agent = await registerAndLogin();
     const res = await agent.post('/api/v1/users/sessions').send(mockUser);
     const { firstName, lastName, email } = mockUser;
@@ -54,7 +54,7 @@ describe('backend-express-template routes', () => {
       lastName,
       email
     });
-  };
+  });
 });
 
 
