@@ -2,7 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
-
+const UserService = require('../lib/services/UserServices');
 
 const mockUser = {
   firstName: 'oliver',
@@ -42,12 +42,26 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('logs in an existing user'), async () => {
+    const agent = await registerAndLogin();
+    const res = await agent.post('/api/v1/users/sessions').send(mockUser);
+    const { firstName, lastName, email } = mockUser;
 
-
-
-
-
-
-
-
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      firstName,
+      lastName,
+      email
+    });
+  };
 });
+
+
+
+
+
+
+
+
+
