@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    fisrt_name VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR UNIQUE,
-    passowrd_hash VARCHAR NOT NULL
+    password_hash VARCHAR NOT NULL
 );
