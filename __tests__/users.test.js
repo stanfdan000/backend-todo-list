@@ -47,7 +47,7 @@ describe('backend-express-template routes', () => {
     const res = await agent.get('/api/v1/users/session').send(mockUser);
     const { firstName, lastName, email } = mockUser;
 
-    // expect(res.status).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body).toEqual({
       id: expect.any(String),
       firstName,
