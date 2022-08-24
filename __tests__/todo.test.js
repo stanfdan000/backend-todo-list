@@ -12,7 +12,7 @@ const mockUser = {
 };
 
 const newTask = {
-    detail: 'Added a task',
+  detail: 'Added a task',
 
 };
 
@@ -21,24 +21,24 @@ const agent = request.agent(app);
 
 
 describe('the Todo Test suite', () => {
-    beforeEach(() => {
-      return setup(pool);
-    });
+  beforeEach(() => {
+    return setup(pool);
+  });
   
-    afterAll(() => {
-      pool.end();
-    })
+  afterAll(() => {
+    pool.end();
+  });
     
-    it('adds new todo for user', async () => {
-       await agent.post('api/v1/users')
-       .send(newTask);
-        expect(res.status).toBe(200)
-        expect(res.body).toEqual({
-            id: expect.any(String),
-            created_at: expect.any(String),
-            detail: 'Added a task', 
-            user_id: expect.any(String),
-            status: false,
-        });
+  it('adds new todo for user', async () => {
+    await agent.post('/api/v1/users').send(mockUser);
+    const res = await agent.post('/api/v1/todo').send(newTask);
+    // expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      created_at: expect.any(String),
+      detail: 'Added a task', 
+      user_id: expect.any(String),
+      status: false,
     });
+  });
 });
