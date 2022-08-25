@@ -20,3 +20,11 @@ CREATE TABLE todo_list (
     user_id BIGINT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+INSERT INTO users (first_name, last_name, email, password_hash) VALUES (
+    'guy', 'pal', '12@example.com', 'fakePassWordHash'
+);
+
+INSERT INTO todo_list (created_at, detail, status, user_id) VALUES (
+    '2000-01-01 00:00:00', 'mow lawn', false, '1'
+)
