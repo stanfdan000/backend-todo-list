@@ -28,6 +28,7 @@ const mockUser = {
 
 const newTask = {
   detail: 'Added a task',
+  status: false,
 
 };
 
@@ -58,19 +59,16 @@ describe('the Todo Test suite', () => {
   });
 
   it('updates todo list /:id ', async () => {
-    const [agent, user] = await registerAndLogin();
-    const todo = await Todo.insert({
-      id: expect.any(String),
-      created_at: expect.any(String),
-      detail: 'Updated a task', 
-      user_id: user.id,
-      status: false,
-    });
-    const resp = await agent
-      .put(`/api/v1/todo/${todo.id}`)
-      .send({ status: false });
-
-    expect(resp.body).toEqual({ ...todo, status: false });
+    
+    await agent.post('/api/v1/users').send(mockUser);
+    let res = await agent.post('/api/v1/todo').send(newTask);
+    const updateTodo = {
+      status: true
+    };
+    
+    res = await agent.put('/api/v1/todo/1').send(updateTodo);
+    console.log(res.body);
+    // expect(res.status).toBe(200);
+    expect(res.body.status).toBe(true);
   });
-
 });
