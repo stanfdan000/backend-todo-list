@@ -79,10 +79,11 @@ describe('the Todo Test suite', () => {
     await agent.post('/api/v1/users').send(mockUser);
     const addTask = await agent.post('/api/v1/todo').send(newTask);
     const res = await agent.get('/api/v1/todo');
-    console.log(res.body, 'hello world');
+    
     // expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
       id: expect.any(String),
+      user_id: expect.any(String),
       created_at: expect.any(String),
       detail: expect.any(String),
       status: expect.any(Boolean),
