@@ -67,8 +67,7 @@ describe('the Todo Test suite', () => {
     };
     
     res = await agent.put('/api/v1/todo/1').send(updateTodo);
-    console.log(res.body);
-    // expect(res.status).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body.status).toBe(true);
   });
 
@@ -77,10 +76,10 @@ describe('the Todo Test suite', () => {
   it('todo all list tasks for auth user', async () => {
     const [agent] = await registerAndLogin();
     await agent.post('/api/v1/users').send(mockUser);
-    // const addTask = await agent.post('/api/v1/todo').send(newTask);
+    await agent.post('/api/v1/todo').send(newTask);
     const res = await agent.get('/api/v1/todo');
     
-    // expect(res.status).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body[0]).toEqual({
       id: expect.any(String),
       user_id: expect.any(String),
