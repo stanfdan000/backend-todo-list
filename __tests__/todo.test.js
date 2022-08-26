@@ -77,7 +77,7 @@ describe('the Todo Test suite', () => {
   it('todo all list tasks for auth user', async () => {
     const [agent] = await registerAndLogin();
     await agent.post('/api/v1/users').send(mockUser);
-    const addTask = await agent.post('/api/v1/todo').send(newTask);
+    // const addTask = await agent.post('/api/v1/todo').send(newTask);
     const res = await agent.get('/api/v1/todo');
     
     // expect(res.status).toBe(200);
